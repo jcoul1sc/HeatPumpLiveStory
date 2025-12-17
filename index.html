@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Giant Heat Pumps: Warming Whole Districts</title>
+  <meta name="description" content="A Shorthand-style scrollytelling page explaining how district-scale heat pumps work, why they are getting bigger, and what a flagship project on the Rhine is aiming to deliver." />
+  <style>
+    :root {
+      --bg: #0b0d10;
+      --panel: rgba(255,255,255,.06);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --hair: rgba(255,255,255,.16);
+      --accent: rgba(255,255,255,.95);
+      --max: 980px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+    a { color: var(--accent); }
+    .progress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 9999;
+    }
+    header.hero {
+      min-height: 92vh;
+      display: grid;
+      align-items: end;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.20) 0%, rgba(0,0,0,.78) 70%, rgba(0,0,0,.92) 100%),
+        url("assets/cf953790-c525-11f0-b288-51552c83ad58.jpg.webp") center/cover no-repeat;
+      padding: 56px 18px 44px;
+      border-bottom: 1px solid var(--hair);
+    }
+    .wrap {
+      width: min(100%, var(--max));
+      margin: 0 auto;
+    }
+    .kicker {
+      display: inline-block;
+      padding: 6px 10px;
+      border: 1px solid var(--hair);
+      border-radius: 999px;
+      background: rgba(0,0,0,.25);
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 14px 0 10px;
+      font-size: clamp(34px, 4vw, 56px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+    .dek {
+      font-size: clamp(16px, 1.4vw, 20px);
+      color: var(--muted);
+      max-width: 56ch;
+      margin: 0 0 18px;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 14px;
+    }
+    main { padding: 24px 18px 70px; }
+    section {
+      padding: 34px 0;
+      border-bottom: 1px solid var(--hair);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 22px;
+      align-items: start;
+    }
+    @media (max-width: 860px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+    h2 {
+      margin: 0 0 10px;
+      font-size: clamp(22px, 2.2vw, 30px);
+      letter-spacing: -0.01em;
+    }
+    p { margin: 0 0 14px; color: var(--text); }
+    .muted { color: var(--muted); }
+    figure {
+      margin: 0;
+      padding: 0;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid var(--hair);
+      background: rgba(0,0,0,.25);
+    }
+    figure img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    figcaption {
+      padding: 10px 12px 12px;
+      font-size: 12px;
+      color: var(--muted);
+      border-top: 1px solid var(--hair);
+    }
+    .card {
+      border: 1px solid var(--hair);
+      background: var(--panel);
+      border-radius: 18px;
+      padding: 16px 16px 14px;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 14px;
+    }
+    @media (max-width: 860px) {
+      .cards { grid-template-columns: 1fr; }
+    }
+    .card h3 {
+      margin: 0 0 6px;
+      font-size: 15px;
+      letter-spacing: .01em;
+    }
+    .big {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin: 2px 0 6px;
+    }
+    .quote {
+      margin: 18px 0 0;
+      padding: 16px 16px 16px 18px;
+      border-left: 3px solid var(--accent);
+      background: rgba(0,0,0,.22);
+      border-radius: 14px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+    .sticky {
+      position: sticky;
+      top: 16px;
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+    .reveal.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    footer {
+      padding: 26px 18px 44px;
+      color: var(--muted);
+    }
+    .sources {
+      border: 1px solid var(--hair);
+      background: var(--panel);
+      border-radius: 18px;
+      padding: 16px;
+    }
+    .sources ul { margin: 8px 0 0; padding-left: 18px; }
+    .small { font-size: 12px; }
+    .pillrow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .pill {
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--hair);
+      background: rgba(0,0,0,.25);
+      font-size: 12px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="progress" id="progress"></div>
+
+  <header class="hero">
+    <div class="wrap">
+      <span class="kicker">Live story • energy • heat networks</span>
+      <h1>Giant heat pumps that can warm whole districts</h1>
+      <p class="dek">
+        City-scale heat pumps are moving from pilot projects to industrial-scale infrastructure.
+        Here is how they work, why they are getting bigger, and what a flagship project on the River Rhine is aiming to deliver.
+      </p>
+      <div class="pillrow">
+        <span class="pill">Scrollytelling template (self-hosted HTML)</span>
+        <span class="pill">Mobile-responsive</span>
+        <span class="pill">No external libraries</span>
+      </div>
+      <div class="meta">
+        <div>Built for: Google Sites embedding</div>
+        <div>Source: BBC News (adapted & paraphrased)</div>
+        <div>Last updated: 17 Dec 2025</div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="wrap grid">
+        <div class="reveal">
+          <h2>1) Why this matters</h2>
+          <p>
+            District heating networks distribute hot water (or steam) through insulated pipes to multiple buildings.
+            Decarbonising these networks is a priority for many cities—especially where a single heat source can influence
+            thousands of homes at once.
+          </p>
+          <p>
+            The emerging approach: treat low‑grade environmental heat (from air, ground, rivers, wastewater, or industrial
+            waste heat) as a “fuel”, and upgrade it using heat pumps. When connected to a heat network, one plant can support
+            an entire district.
+          </p>
+          <div class="quote">
+            Key idea: a big heat pump is not a bigger domestic unit. It is closer to a power-station-scale refrigeration system,
+            engineered for continuous operation, network temperatures, and grid constraints.
+          </div>
+        </div>
+
+        <div class="sticky reveal">
+          <figure>
+            <img src="assets/c13c0290-c526-11f0-b288-51552c83ad58.jpg.webp" alt="Engineers and operators near heat pump machinery" />
+            <figcaption>Engineers and operators discussing the system layout (image credit: BBC).</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap grid">
+        <div class="reveal">
+          <h2>2) How a district-scale heat pump works</h2>
+          <p>
+            The thermodynamic principle is the same as a household heat pump: a refrigerant evaporates at low temperature,
+            then compression boosts its temperature so heat can be delivered at useful levels.
+          </p>
+          <p>
+            At district scale, the “heat source” can be a river or the sea. Large volumes of water flow through heat exchangers,
+            and the pump harvests a small temperature difference—then returns the water to the source.
+          </p>
+
+          <div class="cards">
+            <div class="card">
+              <h3>Heat source</h3>
+              <div class="big">River / seawater</div>
+              <div class="muted">Large, steady flow keeps performance predictable.</div>
+            </div>
+            <div class="card">
+              <h3>Upgrade step</h3>
+              <div class="big">Compression</div>
+              <div class="muted">Raises temperature so heat can feed a network.</div>
+            </div>
+            <div class="card">
+              <h3>Delivery</h3>
+              <div class="big">Heat network</div>
+              <div class="muted">Hot water piped to many buildings from one plant.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sticky reveal">
+          <figure>
+            <img src="assets/2a579f60-c526-11f0-bf7b-db7c049674ab.jpg.webp" alt="Large pipework and valves" />
+            <figcaption>Large intake pipework and valves for moving river water (image credit: BBC).</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap grid">
+        <div class="reveal">
+          <h2>3) Case study: pulling heat from the Rhine</h2>
+          <p>
+            In Mannheim (Germany), energy firm MVV Energie has announced plans for very large heat pump units connected to the
+            local district heating network, located at a site that historically relied on fossil generation.
+          </p>
+          <p>
+            The concept is straightforward but the civil and mechanical engineering is not: take in river water at high flow rates,
+            extract a modest amount of heat, and discharge the water back with minimal temperature change.
+          </p>
+          <p class="muted">
+            Note: exact capacities and schedules should be validated against the most recent project updates before publication.
+            This page is designed as an editable teaching / communications asset.
+          </p>
+
+          <div class="quote">
+            Engineering constraints tend to define the “maximum sensible size”: available electricity supply, network temperature
+            requirements, environmental permits, and what can be built and maintained reliably.
+          </div>
+        </div>
+
+        <div class="sticky reveal">
+          <figure>
+            <img src="assets/cf953790-c525-11f0-b288-51552c83ad58.jpg.webp" alt="Large shiny chrome tank with pipework" />
+            <figcaption>Prototype district-scale heat pump equipment (image credit: BBC).</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap grid">
+        <div class="reveal">
+          <h2>4) The missing piece: storage and flexibility</h2>
+          <p>
+            Big heat pumps often pair with hot-water thermal storage tanks. Storage lets operators smooth peaks,
+            avoid running equipment at maximum output all the time, and take advantage of lower‑carbon or lower‑cost electricity
+            when available.
+          </p>
+          <p>
+            Operationally, this shifts the question from “Can we meet the peak hour?” to “Can we balance heat demand over the day
+            without overbuilding the plant?” It is also a key enabler when renewable electricity supply varies.
+          </p>
+          <div class="cards">
+            <div class="card">
+              <h3>Lower peak plant size</h3>
+              <div class="muted">Storage can cover spikes without oversizing compressors.</div>
+            </div>
+            <div class="card">
+              <h3>Grid-aware operation</h3>
+              <div class="muted">Run harder when power is cleaner/cheaper; coast when constrained.</div>
+            </div>
+            <div class="card">
+              <h3>Resilience</h3>
+              <div class="muted">Stored heat provides short-term buffering for outages or maintenance.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sticky reveal">
+          <figure>
+            <img src="assets/76876f10-d6b4-11f0-8c06-f5d460985095.jpg.webp" alt="Large hot water storage tanks" />
+            <figcaption>Large hot-water thermal storage tanks help balance demand (image credit: BBC).</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap reveal">
+        <h2>5) Suggested “live story” add-ons (optional)</h2>
+        <p class="muted">
+          This template is intentionally simple. If you want it to feel closer to Shorthand, consider adding:
+        </p>
+        <div class="cards">
+          <div class="card">
+            <h3>Mini explainer animation</h3>
+            <div class="muted">A three-step SVG diagram: source → compressor → district network.</div>
+          </div>
+          <div class="card">
+            <h3>Map module</h3>
+            <div class="muted">Static map image + markers for intake, plant, and heat network coverage.</div>
+          </div>
+          <div class="card">
+            <h3>Q&amp;A accordion</h3>
+            <div class="muted">Permitting, river temperature impacts, refrigerants, and costs.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap sources">
+      <strong>Sources & credits</strong>
+      <ul>
+        <li>Primary story source: BBC News, “The giant heat pumps designed to warm whole districts” (saved as MHTML by user). Content on this page is adapted and paraphrased.</li>
+        <li>Images: extracted from the user-provided BBC News MHTML file; rights remain with the original rights holders. Replace with your own licensed images for public publishing.</li>
+      </ul>
+      <p class="small" style="margin-top:10px;">
+        Publishing note: Google Sites does not directly host arbitrary HTML pages. You typically host this folder on a web host
+        (e.g., Google Cloud Storage static site, GitHub Pages, or similar) and then embed by URL in Sites.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Reading progress bar
+    const progress = document.getElementById('progress');
+    const onScroll = () => {
+      const doc = document.documentElement;
+      const scrollTop = doc.scrollTop || document.body.scrollTop;
+      const scrollHeight = doc.scrollHeight - doc.clientHeight;
+      const pct = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+      progress.style.width = pct.toFixed(2) + '%';
+    };
+    document.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // Reveal-on-scroll
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('in');
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
+</body>
+</html>
